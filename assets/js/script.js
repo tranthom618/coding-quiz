@@ -60,6 +60,12 @@ var questions = [
     },
 ];
 
+
+
+
+
+///////////////// Functions List /////////////////
+
 // Timer function to start and end when time expires
 function startTimer() {
     // Displays timer
@@ -141,10 +147,29 @@ function displayQuestion() {
     }
 }
 
+// Function to verify correct answer
+function correctAnswer {
+
+}
+
+
+
+
+
+///////////////// Event Listeners /////////////////
+
 // Adds listener to the start button and calls the apropriate functions to start the quiz
 startBtn.addEventListener("click", function () {
     hide(homeEl);
     startTimer();
     displayQuestion();
     show(quizEl);
+});
+
+// Adds listener to the answers button and calls the function to check the answer
+answersEl.addEventListener("click", function (e) {
+    if (e.target.matches("button")) {
+        correctAnswer(e.target);
+        nextQuestion();
+    }
 });
