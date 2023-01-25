@@ -20,7 +20,6 @@ let highscoreBtn = document.querySelector("#viewHighs");
 let timerEl = document.querySelector("#timer");
 
 // Score/Stats Tracking Variables
-var score = 0;
 var currentQuestion = 0;
 var highScores = [];
 var timeStart = 60;
@@ -104,7 +103,6 @@ function show(element) {
 // Function that resets for a new game
 function reset() {
     secondsPassed = 0;
-    score = 0;
     currentQuestion = 0;
     timerEl.textContent = 0;
 }
@@ -123,10 +121,8 @@ function nextQuestion() {
     else {
         stopTimer();
 
-        // If statement to find the remaining time and make it your score.
-        if ((timeStart - secondsPassed) > 0) {score += (timeGiven - secondsPassed)};
         // Prints out player's score, hides the quiz, changes screens, shows timer zero
-        finalScoreEl.textContent = score;
+        finalScoreEl.textContent = timeStart-secondsPassed;
         hide(quizEl);
         show(gameoverEl);
         timerEl.textContent = 0;
@@ -148,8 +144,14 @@ function displayQuestion() {
 }
 
 // Function to verify correct answer
-function correctAnswer {
-
+function correctAnswer(answer) {
+    if (questions[currentQuestion].answer == questions[currentQuestion].choices[answer.id]) {
+        console.log("Correct!");
+    }
+    else {
+        secondsPassed += 5;
+        console.log("XX WRONG XX");
+    }
 }
 
 
