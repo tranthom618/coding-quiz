@@ -68,3 +68,24 @@ function reset() {
     currentQuestion = 0;
     timerEl.textContent = 0;
 }
+
+// Function that will display next question when called.
+function nextQuestion() {
+    // Array index number positioning
+    currentQuestion++;
+
+    // Checks timer
+    if (currentQuestion < questions.length) {
+        // Calls function to display a question
+        renderQuestion();
+    } 
+    // If time is out, stops timer and 
+    else {
+        stopTimer();
+        if ((timeStart - secondsPassed) > 0) {score += (timeGiven - secondsElapsed)};
+        userScoreEl.textContent = score;
+        hide(quizEl);
+        show(inputScoreEl);
+        timerEl.textContent = 0;
+    }
+}
