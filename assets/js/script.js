@@ -23,7 +23,7 @@ let timerEl = document.querySelector("#timer");
 var score = 0;
 var currentQuestion = 0;
 var highScores = [];
-var timeStart = 5;
+var timeStart = 60;
 var secondsPassed = 0;
 var interval;
 
@@ -134,7 +134,10 @@ function displayQuestion() {
 
     // Displays all the choices stored within the answers (that's within an array hence .children)
     for (i = 0; i < answersEl.children.length; i++) {
-        answersEl.children[i].children[0].textContent = 
+        // For loop cycles through, using 'i' as an increment to choose which of the children[i] to show.
+        answersEl.children[i].children[0].textContent = `${(i + 1)}: ${questions[currentQuestion].choices[i]}`;
+        // First $ is used to select id= 0...3 in html under answers
+        // Second $ is used to select the array questions, under the specified question #, then using i from the for loop to cycle through the answers in the array
     }
 }
 
@@ -142,6 +145,6 @@ function displayQuestion() {
 startBtn.addEventListener("click", function () {
     hide(homeEl);
     startTimer();
-    renderQuestion();
+    displayQuestion();
     show(quizEl);
 });
