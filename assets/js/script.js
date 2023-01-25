@@ -43,13 +43,6 @@ function stopTimer() {
     clearInterval(interval);
 }
 
-// Adds listener to the start button and calls the apropriate functions to start the quiz
-startBtn.addEventListener("click", function () {
-    hide(welcomeEl);
-    startTimer();
-    renderQuestion();
-    show(quizEl);
-});
 
 // Hides the element so the next page can show up on a clear screen
 function hide(element) {
@@ -89,3 +82,11 @@ function nextQuestion() {
         timerEl.textContent = 0;
     }
 }
+
+// Adds listener to the start button and calls the apropriate functions to start the quiz
+startBtn.addEventListener("click", function () {
+    hide(homeEl);
+    startTimer();
+    renderQuestion();
+    show(quizEl);
+});
