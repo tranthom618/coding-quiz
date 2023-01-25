@@ -9,7 +9,7 @@ let answersEl = document.querySelector("#answers");
 
 //Game Over Screen Page Elements
 let gameoverEl = document.querySelector("#gameOver");
-let plnameEl = document.querySelector("#playerName");
+let playernameEl = document.querySelector("#playerName");
 let submitNameBtnEl = document.querySelector("#submitName");
 let finalScoreEl = document.querySelector("#score");
 
@@ -128,11 +128,10 @@ function nextQuestion() {
     else {
         stopTimer();
 
-        // Prints out player's score, hides the quiz, changes screens, shows timer zero
+        // Prints out player's score, hides the quiz, shows the game over screen
         finalScoreEl.textContent = timeStart-secondsPassed;
         hide(quizEl);
         show(gameoverEl);
-        timerEl.textContent = 0;
     }
 }
 
@@ -185,7 +184,23 @@ function showCorrect(cOrw) {
 }
 
 submitNameBtnEl.addEventListener("click", function () {
-    
+    // let gameoverEl = document.querySelector("#gameOver");
+// let playernameEl = document.querySelector("#playerName");
+// let submitNameBtnEl = document.querySelector("#submitName");
+// let finalScoreEl = document.querySelector("#score");
+    let userScore = { username: initValue, userScore: score };
+    initialsEl.value = '';
+
+    // Saves the stat and name to the local storage of the web browser
+    highScores = JSON.parse(localStorage.getItem("scores")) || [];
+    highScores.push(userScore)
+    localStorage.setItem("scores", JSON.stringify(highScores));
+
+    // Once name is submitted, hides the Game Over screen, shows the high score leaderboard, then resets the current stats for a new quiz/game.
+    hide(inputScoreEl);
+    renderHighScores();
+    reset();
+    }
 });
 
 
