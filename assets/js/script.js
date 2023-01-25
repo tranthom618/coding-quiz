@@ -26,12 +26,19 @@ var timeStart = 60;
 var secondsPassed = 0;
 var interval;
 
-// The list of questions stored as an array. Curly brackets allows more variables/arrays within the same index position.
+
+
+
+
+///////////////// Questions List/////////////////
+
+// Curly brackets allows more variables/arrays within the same index position.
 var questions = [
-    {
-        title: "To open the developer tools: ",
-        choices: ["Right Click -> Inspect", "Ctrl+O (Open Dev Tools!)", "Ctrl+4 (Four/for Dev Tools!)", "Ctrl+P (Produce Dev Tools!)"],
-        answer: "Right Click -> Inspect"
+    { //index [0] of questions
+        title: "To open the developer tools: ", // index[0] within questions[0] - It's an array within an array!
+        // Below is an array of the multiple choice options within array that's within the array of questions[0]!
+        choices: ["Right Click -> Inspect", "Ctrl+O (Open Dev Tools!)", "Ctrl+4 (Four/for Dev Tools!)", "Ctrl+P (Produce Dev Tools!)"], 
+        answer: "Right Click -> Inspect" // The stored correct answer
     },
 
     {
@@ -144,16 +151,38 @@ function displayQuestion() {
 }
 
 // Function to verify correct answer
-function correctAnswer(answer) {
+function checkAnswer(answer) {
+    // Matches the array of questions with the stored answer and the selected "choices" from the questions array
     if (questions[currentQuestion].answer == questions[currentQuestion].choices[answer.id]) {
-        console.log("Correct!");
+        showCorrect("Correct!");
     }
     else {
+        // Time penalty for wrong answers
         secondsPassed += 5;
-        console.log("XX WRONG XX");
+        showCorrect("XX WRONG XX");
     }
 }
 
+// Function to print out timed temporary message for whether correct or wrong (cOrw = correctOrwrong)
+function showCorrect(cOrw) {
+    // Produces a line break
+    let cOrwBr = document.createElement("br");
+    // Produces a temporary div element that'll contain the message
+    let cOrwMessage = document.createElement("div");
+    // Uses the div element created just above to assign it the cOrw value given to the function
+    cOrwMessage.textContent = cOrw;
+
+    // Append displays the message at the end of the jumbrotron element
+    document.querySelector(".jumbotron").appendChild(cOrwBr);
+    document.querySelector(".jumbotron").appendChild(cOrwMessage);
+
+    // Interval function to remove the correct/wrong message so it doesn't permanently stay - Set to show the message for 1.5 seconds
+    setTimeout(function () {
+        cOrwBr.remove();
+        cOrwMessage.remove();
+    }, 1500);
+
+}
 
 
 
@@ -162,16 +191,20 @@ function correctAnswer(answer) {
 
 // Adds listener to the start button and calls the apropriate functions to start the quiz
 startBtn.addEventListener("click", function () {
+    //Hides starting home page
     hide(homeEl);
+    // Starts timer
     startTimer();
+    // Loads up the question in the elements but not yet displayed
     displayQuestion();
+    // Show function displays the quiz element, showing the choices
     show(quizEl);
 });
 
 // Adds listener to the answers button and calls the function to check the answer
 answersEl.addEventListener("click", function (e) {
     if (e.target.matches("button")) {
-        correctAnswer(e.target);
+        checkAnswer(e.target);
         nextQuestion();
     }
 });
