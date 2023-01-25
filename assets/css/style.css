@@ -1,0 +1,11 @@
+#homescreen, #quiz, #inputScore, #highScores {
+    width: 70%;
+}
+
+#quiz, #inputScore, #highScores {
+    display: none;
+}
+
+.jumbotron {
+    background-color: white;
+}

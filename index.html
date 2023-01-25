@@ -11,13 +11,31 @@
 
 
   <body>
+    <!-- Header contains game stats (Score, Time) -- Using Bootstrap  -->
     <header>
-      
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Class md (medium) used for devices greater than 768px - With 4 columns -->
+                <div class="col-md-4 h3" id="viewHScores">View Highscores</div>
+                <!-- Splits "Time" and the seconds into 2 columns -->
+                <div class="col-md-2 ml-auto h3">Time: <span id="timer">0</span></div>
+            </div>
+        </div>    
     </header>
 
-    <main>
-      
-    </main>
+    <div class="container mt-3">
+        <!-- Jumbotron is a pre-installed class for creating a large play-box -->
+        <div class="jumbotron jumbotron-fluid text-center">
+
+            <!-- Home Start Screen  -->
+            <div class="container" id="homestart">
+                <h1 class="h1 mb-4">Coding Trivia Quiz</h1>
+                <!-- Class 'lead' makes this paragraph stand out -->
+                <p class="lead mb-4">A quiz of code-related questions! Score is how many you can answer within the time limit. Incorrect answers will penalize time by ten seconds!</p>
+                <!-- Start button -->
+                <button type="button" class="btn btn-primary btn-lg" id="startQuiz">Start Quiz</button>
+            </div>
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>
