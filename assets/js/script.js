@@ -2,6 +2,11 @@
 let homeEl = document.querySelector("#homestart");
 let startBtn = document.querySelector("#startQuiz");
 
+// Questions Screen Page
+let quizEl = document.querySelector("#quiz");
+let questionEl = document.querySelector("#question");
+let answersEl = document.querySelector("#answers");
+
 // Button to view high scores
 let highscoreBtn = document.querySelector("#viewHighs");
 

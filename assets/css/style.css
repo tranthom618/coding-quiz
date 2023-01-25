@@ -1,5 +1,9 @@
-#homestart {
+#homestart, #quiz, #gameOver, #highScores{
     width: 70%;
+}
+
+#quiz, #gameOver, #highScores {
+    display: none;
 }
 
 .jumbotron {
