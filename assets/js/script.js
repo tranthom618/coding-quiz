@@ -7,6 +7,12 @@ let quizEl = document.querySelector("#quiz");
 let questionEl = document.querySelector("#question");
 let answersEl = document.querySelector("#answers");
 
+//Game Over Screen Page Elements
+let gameoverEl = document.querySelector("#gameOver");
+let plnameEl = document.querySelector("#playerName");
+let submitNameBtnEl = document.querySelector("#submitName");
+let finalScoreEl = document.querySelector("#score");
+
 // Button to view high scores
 let highscoreBtn = document.querySelector("#viewHighs");
 
@@ -17,7 +23,7 @@ let timerEl = document.querySelector("#timer");
 var score = 0;
 var currentQuestion = 0;
 var highScores = [];
-var timeStart = 100;
+var timeStart = 5;
 var secondsPassed = 0;
 var interval;
 
@@ -36,7 +42,7 @@ function startTimer() {
 
         // If statement to confirm when time has expired
         if (secondsPassed >= timeStart) {
-            // By using .length, it'll move the question to the last of the array and "end" the quiz.
+            // By using .length, it'll move the question to the last of the array, then pushes to the nextQuestion function which will "end" the quiz.
             currentQuestion = questions.length;
             nextQuestion();
         }
@@ -72,18 +78,21 @@ function nextQuestion() {
     // Array index number positioning
     currentQuestion++;
 
-    // Checks timer
+    // Checks if the user has completed all the questions (it knows the number from finding the array length)
     if (currentQuestion < questions.length) {
-        // Calls function to display a question
-        renderQuestion();
+        // Calls function to display the next question if there's still remaining questions.
+        displayQuestion();
     } 
-    // If time is out, stops timer and 
+    // If all the questions have been answerred then:
     else {
         stopTimer();
-        if ((timeStart - secondsPassed) > 0) {score += (timeGiven - secondsElapsed)};
-        userScoreEl.textContent = score;
+
+        // If statement to find the remaining time and make it your score.
+        if ((timeStart - secondsPassed) > 0) {score += (timeGiven - secondsPassed)};
+        // Prints out player's score, hides the quiz, changes screens, shows timer zero
+        finalScoreEl.textContent = score;
         hide(quizEl);
-        show(inputScoreEl);
+        show(gameoverEl);
         timerEl.textContent = 0;
     }
 }

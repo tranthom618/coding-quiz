@@ -1,9 +1,13 @@
 #homestart, #quiz, #gameOver, #highScores{
-    width: 70%;
+    width: 80%;
 }
 
 #quiz, #gameOver, #highScores {
     display: none;
+}
+
+#timerPosition {
+
 }
 
 .jumbotron {
