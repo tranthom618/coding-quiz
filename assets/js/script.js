@@ -27,8 +27,38 @@ var timeStart = 5;
 var secondsPassed = 0;
 var interval;
 
-// Placeholder to store questions until it can be later figured out
-var questions = [];
+// The list of questions stored as an array. Curly brackets allows more variables/arrays within the same index position.
+var questions = [
+    {
+        title: "To open the developer tools: ",
+        choices: ["Right Click -> Inspect", "Ctrl+O (Open Dev Tools!)", "Ctrl+4 (Four/for Dev Tools!)", "Ctrl+P (Produce Dev Tools!)"],
+        answer: "Right Click -> Inspect"
+    },
+
+    {
+        title: "Conditional statements commonly include if & else statements. What's the other one?",
+        choices: ["Elvis", "Elves Fit", "Else If", "Elles Eef"],
+        answer: "Else If"
+    },
+
+    {
+        title: "To print a text to the console, use what syntax?",
+        choices: ["console.print()", "console.say()", "siri.console()", "console.log()"],
+        answer: "console.log()"
+    },
+
+    {
+        title: "What language is considered the skeleton of a website?",
+        choices: ["Polish", "HTML", "Vietnamese", "Seven-Up"],
+        answer: "HTML"
+    },
+
+    {
+        title: "Which type of variable is one that's assigned as trueor false?",
+        choices: ["Boolean", "String Bean", "Boo Jeans", "Snoolean"],
+        answer: "Boolean"
+    },
+];
 
 // Timer function to start and end when time expires
 function startTimer() {
@@ -94,6 +124,17 @@ function nextQuestion() {
         hide(quizEl);
         show(gameoverEl);
         timerEl.textContent = 0;
+    }
+}
+
+// Function that displays the current question
+function displayQuestion() {
+    // Dispays the text of the question
+    questionEl.textContent = questions[currentQuestion].title;
+
+    // Displays all the choices stored within the answers (that's within an array hence .children)
+    for (i = 0; i < answersEl.children.length; i++) {
+        answersEl.children[i].children[0].textContent = 
     }
 }
 
