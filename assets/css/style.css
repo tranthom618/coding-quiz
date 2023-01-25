@@ -1,9 +1,5 @@
-#homescreen, #quiz, #inputScore, #highScores {
+#homestart {
     width: 70%;
-}
-
-#quiz, #inputScore, #highScores {
-    display: none;
 }
 
 .jumbotron {
