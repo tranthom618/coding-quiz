@@ -184,7 +184,9 @@ function showCorrect(cOrw) {
 
 }
 
-
+submitNameBtnEl.addEventListener("click", function () {
+    
+});
 
 
 ///////////////// Event Listeners /////////////////
