@@ -57,6 +57,23 @@
                 </div>
             </div>
 
+            <!-- Game Over screen - User submits name to save their score -->
+            <div class="container" id="gameOver">
+                <h1 class="h1 mb-4">Game Over!</h1>
+                <p class="lead mb-4">Final score: <span id="score"></span></p>
+                <p class="lead mb-4">Enter Name: <input type="text " id="playerName"></p>
+                <button type="button" class="btn btn-primary btn-lg" id="submitName">Submit</button>
+            </div>
+
+            <!-- High Scores Leaderboard -->
+            <div class="container" id="highScores">
+                <h1 class="h1 mb-4 font-weight-bold">Highscores</h1>
+                <div class="container h4 mb-4" id="scores">
+                </div>
+                <button type="button" class="btn btn-primary btn-lg" id="homeReturn">Home</button>
+                <button type="button" class="btn btn-primary btn-lg" id="clearBoard">Clear Leaderboard</button>
+            </div>
+
 
         </div> 
     </div>

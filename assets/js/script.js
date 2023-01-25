@@ -2,16 +2,22 @@
 let homeEl = document.querySelector("#homestart");
 let startBtn = document.querySelector("#startQuiz");
 
-// Score Tracking Variables
+// Button to view high scores
 let highscoreBtn = document.querySelector("#viewHighs");
+
+// Links to timer element in html
 let timerEl = document.querySelector("#timer");
 
+// Score/Stats Tracking Variables
 var score = 0;
 var currentQuestion = 0;
 var highScores = [];
 var timeStart = 100;
 var secondsPassed = 0;
 var interval;
+
+// Placeholder to store questions until it can be later figured out
+var questions = [];
 
 // Timer function to start and end when time expires
 function startTimer() {
@@ -39,10 +45,26 @@ function stopTimer() {
 
 // Adds listener to the start button and calls the apropriate functions to start the quiz
 startBtn.addEventListener("click", function () {
+    hide(welcomeEl);
     startTimer();
+    renderQuestion();
+    show(quizEl);
 });
 
-// Function that'll move on to the next question when called.
-function nextQuestion() {
+// Hides the element so the next page can show up on a clear screen
+function hide(element) {
+    element.style.display = "none";
+}
 
+// Shows the next page with whatever is in the brackets of show('page-name')
+function show(element) {
+    element.style.display = "block";
+}
+
+// Function that resets for a new game
+function reset() {
+    secondsPassed = 0;
+    score = 0;
+    currentQuestion = 0;
+    timerEl.textContent = 0;
 }
