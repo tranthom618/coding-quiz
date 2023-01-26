@@ -284,3 +284,14 @@ goBackBtn.addEventListener("click", function () {
     show(homeEl);
 });
 
+// Clear Scores button event listener
+clearScoresBtn.addEventListener("click", function () {
+    // Sets highScores as empty, clears the local storage.
+    highScores = [];
+
+    // Saves over the locally stored scores with new empty array
+    localStorage.setItem("leaderbd", JSON.stringify(highScores));
+
+    // Reloads the Leaderboard Highscores Page
+    displayLeader();
+});
