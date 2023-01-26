@@ -25,6 +25,7 @@ var highScores = [];
 var timeStart = 60;
 var secondsPassed = 0;
 var interval;
+var score = 0;
 
 
 
@@ -129,7 +130,8 @@ function nextQuestion() {
         stopTimer();
 
         // Prints out player's score, hides the quiz, shows the game over screen
-        finalScoreEl.textContent = timeStart-secondsPassed;
+        score = timeStart-secondsPassed;
+        finalScoreEl.textContent = score;
         hide(quizEl);
         show(gameoverEl);
     }
@@ -183,31 +185,8 @@ function showCorrect(cOrw) {
 
 }
 
-submitNameBtnEl.addEventListener("click", function () {
-    // Creates an array at index [0] that will store both player's name and their score (an array that contains an array of two objects)
-    // Curly brackets destructures 
-    let playerInfo = { username: playernameEl, playerScore: score };
-    console.log(playernameEl);
-    // Clears the stored name once it's been allocated to the playerInfo. Allows for next attempt.
-    playernameEl.value = '';
 
-    // Retrieves the locally stored array of scores and names. Uses JSON parsing to convert text format into a JS array. || Means if there's nothing stored, then [] will make it blank
-    highScores = JSON.parse(localStorage.getItem("scores")) || [];
-    console.log(highScores);
 
-    // Adds current score to the highScores array
-    highScores.push(playerInfo);
- 
-
-    
-    // Saves the array to local storage, uses JSON to convert array data to string data
-    localStorage.setItem("scores", JSON.stringify(highScores));
-
-    // Once name is submitted, hides the Game Over screen, shows the high score leaderboard, then resets the current stats for a new quiz/game.
-    hide(gameoverEl);
-    displayLeader();
-    reset();
-});
 
 
 ///////////////// Event Listeners /////////////////
@@ -230,4 +209,28 @@ answersEl.addEventListener("click", function (e) {
         checkAnswer(e.target);
         nextQuestion();
     }
+});
+
+submitNameBtnEl.addEventListener("click", function () {
+    let saveName = playernameEl.value
+    // Creates an array that will store both player's name and their score (an array1 that contains an array2 of two objects, array2 is each istance of a quiz's score)
+    let playerInfo = { username: saveName, playerScore: score };
+    // Clears the stored name once it's been allocated to the playerInfo. Allows for next attempt.
+    playernameEl.value = '';
+
+    // Retrieves the locally stored array of scores and names. Uses JSON parsing to convert text format into a JS array. || Means if there's nothing stored, then [] will make it blank
+    highScores = JSON.parse(localStorage.getItem("leaderbd")) || [];
+    console.log(highScores);
+
+    // Adds current score to the highScores array
+    highScores.push(playerInfo);
+ 
+
+    // Saves the array to local storage, uses JSON to convert array data to string data
+    localStorage.setItem("leaderbd", JSON.stringify(highScores));
+
+    // Once name is submitted, hides the Game Over screen, shows the high score leaderboard, then resets the current stats for a new quiz/game.
+    hide(gameoverEl);
+    displayLeader();
+    reset();
 });
