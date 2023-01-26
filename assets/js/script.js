@@ -14,7 +14,7 @@ let submitNameBtnEl = document.querySelector("#submitName");
 let finalScoreEl = document.querySelector("#score");
 
 // Highscore Leaderboard Page
-let highscoresPageEl = document.querySelector("#viewHighs");
+let highscoresPageEl = document.querySelector("#highScores");
 let leaderbdEl = document.querySelector("#leaderbd");
 let goBackBtn = document.querySelector("#homeReturn");
 let clearScoresBtn = document.querySelector("#clearBoard");
@@ -165,7 +165,7 @@ function checkAnswer(answer) {
     }
     else {
         // Time penalty for wrong answers
-        secondsPassed += 5;
+        secondsPassed += 10;
         showCorrect("XX WRONG XX");
     }
 }
@@ -192,7 +192,20 @@ function showCorrect(cOrw) {
 }
 
 function displayLeader() {
+    // Clear content
+    leaderbdEl.innerHTML = "";
+    show(highscoresPageEl);
 
+    highScores = JSON.parse(localStorage.getItem("leaderbd"));
+
+    for (let i = 0; i < highScores.length; i++) {
+        let scoresList = document.createElement("div");
+        scoresList.className += "row mb-3 p-2";
+        console.log(scoresList)
+        scoresList.setAttribute("style", "background-color:PaleTurquoise;");
+        scoresList.textContent = `${(i + 1)}. ${highScores[i].username} - ${highScores[i].playerScore}`;
+        leaderbdEl.appendChild(scoresList);
+    }
 }
 
 
@@ -231,7 +244,6 @@ submitNameBtnEl.addEventListener("click", function () {
 
     // Retrieves the locally stored array of scores and names. Uses JSON parsing to convert text format into a JS array. || Means if there's nothing stored, then [] will make it blank
     highScores = JSON.parse(localStorage.getItem("leaderbd")) || [];
-    console.log(highScores);
 
     // Adds current score to the highScores array
     highScores.push(playerInfo);
@@ -246,7 +258,7 @@ submitNameBtnEl.addEventListener("click", function () {
 });
 
 // View Highscores Leaderboard Page Button
-highscoresPageEl.addEventListener("click", function () {
+highscoreBtn.addEventListener("click", function () {
     hide(homeEl);
     hide(quizEl);
     hide(gameoverEl);
