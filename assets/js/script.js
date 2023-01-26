@@ -191,18 +191,29 @@ function showCorrect(cOrw) {
 
 }
 
+// Function that displays the leaderboard
 function displayLeader() {
-    // Clear content
+    // Ensures the leaderboard content is cleared from previous loading. Essentially refreshes
     leaderbdEl.innerHTML = "";
+
+    // Shows the Leaderboard page
     show(highscoresPageEl);
 
+    // JSON parse to retrieve locally stored high scores (getItem)
     highScores = JSON.parse(localStorage.getItem("leaderbd"));
 
+    // For loop to detect the total number of recorded high scores
     for (let i = 0; i < highScores.length; i++) {
+        // Creates a new div element to display the recorded high scores
         let scoresList = document.createElement("div");
+
+        // Bootstrap styling so each score shows up on a new row
         scoresList.className += "row mb-3 p-2";
-        console.log(scoresList)
-        scoresList.setAttribute("style", "background-color:PaleTurquoise;");
+        
+        // Sets the background of each 'listed' item as purple to differentiate from white background
+        scoresList.setAttribute("style", "background-color:Purple;");
+
+        // The actual displaying of the text
         scoresList.textContent = `${(i + 1)}. ${highScores[i].username} - ${highScores[i].playerScore}`;
         leaderbdEl.appendChild(scoresList);
     }
@@ -272,3 +283,4 @@ goBackBtn.addEventListener("click", function () {
     hide(highscoresPageEl);
     show(homeEl);
 });
+
