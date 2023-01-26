@@ -211,7 +211,7 @@ function displayLeader() {
         scoresList.className += "row mb-3 p-2";
         
         // Sets the background of each 'listed' item as purple to differentiate from white background
-        scoresList.setAttribute("style", "background-color:Purple;");
+        scoresList.setAttribute("style", "background-color: Purple");
 
         // The actual displaying of the text
         scoresList.textContent = `${(i + 1)}. ${highScores[i].username} - ${highScores[i].playerScore}`;
@@ -255,7 +255,7 @@ submitNameBtnEl.addEventListener("click", function () {
 
     // Retrieves the locally stored array of scores and names. Uses JSON parsing to convert text format into a JS array. || Means if there's nothing stored, then [] will make it blank
     highScores = JSON.parse(localStorage.getItem("leaderbd")) || [];
-
+    
     // Adds current score to the highScores array
     highScores.push(playerInfo);
  
