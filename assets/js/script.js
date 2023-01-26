@@ -41,7 +41,7 @@ var questions = [
         answer: "Right Click -> Inspect" // The stored correct answer
     },
 
-    {
+    { //index [1] of questions
         title: "Conditional statements commonly include if & else statements. What's the other one?",
         choices: ["Elvis", "Elves Fit", "Else If", "Elles Eef"],
         answer: "Else If"
@@ -184,23 +184,29 @@ function showCorrect(cOrw) {
 }
 
 submitNameBtnEl.addEventListener("click", function () {
-    // let gameoverEl = document.querySelector("#gameOver");
-// let playernameEl = document.querySelector("#playerName");
-// let submitNameBtnEl = document.querySelector("#submitName");
-// let finalScoreEl = document.querySelector("#score");
-    let userScore = { username: initValue, userScore: score };
-    initialsEl.value = '';
+    // Creates an array at index [0] that will store both player's name and their score (an array that contains an array of two objects)
+    // Curly brackets destructures 
+    let playerInfo = { username: playernameEl, playerScore: score };
+    console.log(playernameEl);
+    // Clears the stored name once it's been allocated to the playerInfo. Allows for next attempt.
+    playernameEl.value = '';
 
-    // Saves the stat and name to the local storage of the web browser
+    // Retrieves the locally stored array of scores and names. Uses JSON parsing to convert text format into a JS array. || Means if there's nothing stored, then [] will make it blank
     highScores = JSON.parse(localStorage.getItem("scores")) || [];
-    highScores.push(userScore)
+    console.log(highScores);
+
+    // Adds current score to the highScores array
+    highScores.push(playerInfo);
+ 
+
+    
+    // Saves the array to local storage, uses JSON to convert array data to string data
     localStorage.setItem("scores", JSON.stringify(highScores));
 
     // Once name is submitted, hides the Game Over screen, shows the high score leaderboard, then resets the current stats for a new quiz/game.
-    hide(inputScoreEl);
-    renderHighScores();
+    hide(gameoverEl);
+    displayLeader();
     reset();
-    }
 });
 
 
