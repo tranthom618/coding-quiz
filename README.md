@@ -14,7 +14,7 @@ For the purposes of this project, the web application will be hosted on GitHub P
 
 ![Preview of navigation links](assets/images/readme-instructional.png?raw=true "README Example")
 
-Simply follow press the start button and select your answers to each question. The score is based on the number of questions answerred within the allocated time, for each wrong answer you lose time.
+Simply follow press the start button and select your answers to each question. The score is based on the number of questions answerred within the allocated time, for each wrong answer you lose 10 seconds off the clock. There is a "View Highscores" button that'll display all the saved scores of each participant in the game (locally saved to the browser).
 
 ## Credits
 
