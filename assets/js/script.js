@@ -14,7 +14,7 @@ let submitNameBtnEl = document.querySelector("#submitName");
 let finalScoreEl = document.querySelector("#score");
 
 // Highscore Leaderboard Page
-let highscoresPageEl = document.querySelector("#highScores");
+let highscoresPageEl = document.querySelector("#viewHighs");
 let leaderbdEl = document.querySelector("#leaderbd");
 let goBackBtn = document.querySelector("#homeReturn");
 let clearScoresBtn = document.querySelector("#clearBoard");
@@ -191,6 +191,10 @@ function showCorrect(cOrw) {
 
 }
 
+function displayLeader() {
+
+}
+
 
 
 
@@ -217,6 +221,7 @@ answersEl.addEventListener("click", function (e) {
     }
 });
 
+// Event Listener for the "Submit" button and the input text field for name (All on the "Game Over" Screen)
 submitNameBtnEl.addEventListener("click", function () {
     let saveName = playernameEl.value
     // Creates an array that will store both player's name and their score (an array1 that contains an array2 of two objects, array2 is each istance of a quiz's score)
@@ -238,4 +243,20 @@ submitNameBtnEl.addEventListener("click", function () {
     hide(gameoverEl);
     displayLeader();
     reset();
+});
+
+// View Highscores Leaderboard Page Button
+highscoresPageEl.addEventListener("click", function () {
+    hide(homeEl);
+    hide(quizEl);
+    hide(gameoverEl);
+    displayLeader();
+    stopTimer();
+    reset();
+});
+
+// Home Button after player is done viewing the Highscore Leaderboard
+goBackBtn.addEventListener("click", function () {
+    hide(highscoresPageEl);
+    show(homeEl);
 });
