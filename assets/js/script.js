@@ -13,6 +13,12 @@ let playernameEl = document.querySelector("#playerName");
 let submitNameBtnEl = document.querySelector("#submitName");
 let finalScoreEl = document.querySelector("#score");
 
+// Highscore Leaderboard Page
+let highscoresPageEl = document.querySelector("#highScores");
+let leaderbdEl = document.querySelector("#leaderbd");
+let goBackBtn = document.querySelector("#homeReturn");
+let clearScoresBtn = document.querySelector("#clearBoard");
+
 // Button to view high scores
 let highscoreBtn = document.querySelector("#viewHighs");
 
@@ -225,7 +231,6 @@ submitNameBtnEl.addEventListener("click", function () {
     // Adds current score to the highScores array
     highScores.push(playerInfo);
  
-
     // Saves the array to local storage, uses JSON to convert array data to string data
     localStorage.setItem("leaderbd", JSON.stringify(highScores));
 
